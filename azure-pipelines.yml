@@ -6,7 +6,7 @@ jobs:
   - task: NodeTool@0
     inputs:
       versionSpec: 10.3.0
-  - powershell: build.ps1
+  - powershell: .\build.ps1
 
 - job: Windows
   pool:
@@ -15,7 +15,7 @@ jobs:
   - task: NodeTool@0
     inputs:
       versionSpec: 10.3.0
-  - powershell: build.ps1
+  - powershell: .\build.ps1
 
 - job: Release
   dependsOn:
