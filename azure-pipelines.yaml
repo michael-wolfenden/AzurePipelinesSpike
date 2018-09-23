@@ -1,0 +1,24 @@
+jobs:
+- job: Linux
+  pool:
+    vmImage: ubuntu-16.04
+  - task: NodeTool@0
+    inputs:
+      versionSpec: 10.3.0
+  - powershell: ./ build.ps1
+
+- job: Windows
+  pool:
+    vmImage: vs2017-win2016
+  steps:
+  - task: NodeTool@0
+    inputs:
+      versionSpec: 10.3.0
+  - powershell: ./ build.ps1
+
+- job: Release
+  dependsOn:
+  - Linux
+  - Windows
+  steps:
+  - script: echo hello from release
