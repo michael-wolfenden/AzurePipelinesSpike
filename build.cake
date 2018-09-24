@@ -212,12 +212,10 @@ public class BuildContext
         Target = context.Argument<string>("target", "Default");
         Configuration = context.Argument<string>("configuration", "Release");
 
-        context.Information("branch {0}", context.BuildSystem().TFBuild.Environment.Repository.Branch);
-
         IsRunningOnWindows = context.IsRunningOnWindows();
         IsRunningOnRemoteMasterBranch =
             StringComparer.OrdinalIgnoreCase.Equals("master", context.BuildSystem().AppVeyor.Environment.Repository.Branch) ||
-            StringComparer.OrdinalIgnoreCase.Equals("master", context.BuildSystem().TFBuild.Environment.Repository.Branch)
+            StringComparer.OrdinalIgnoreCase.Equals("master", context.BuildSystem().TFBuild.Environment.Repository.Branch);
 
         ArtifactsDir =  context.Directory("./artifacts");
         Solutions = context.GetFiles("./src/*.sln");
