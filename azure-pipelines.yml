@@ -1,3 +1,10 @@
+# Perform linux build followed by the windows build in sequence as
+# the windows build will trigger the release on success
+
+# NOTE: you must have the following variables set in your pipeline
+# GITHUB_TOKEN
+# NUGET_TOKEN
+
 jobs:
 - job: Linux
   pool:
@@ -5,21 +12,18 @@ jobs:
   steps:
   - task: NodeTool@0
     inputs:
+      # semantic-version requires node > 8.3
       versionSpec: 10.3.0
   - powershell: .\build.ps1
 
 - job: Windows
+  dependsOn:
+  - Linux
   pool:
     vmImage: vs2017-win2016
   steps:
   - task: NodeTool@0
     inputs:
+      # semantic-version requires node > 8.3
       versionSpec: 10.3.0
   - powershell: .\build.ps1
-
-- job: Release
-  dependsOn:
-  - Linux
-  - Windows
-  steps:
-  - script: echo hello from release
