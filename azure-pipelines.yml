@@ -57,6 +57,5 @@ jobs:
       - task: DownloadBuildArtifacts@0
         displayName: 'Download packages to artifacts directory'
         inputs:
-          downloadType: specific
-          itemPattern: '**/*.nugpkg'
+          itemPattern: 'drop/**'
           downloadPath: artifacts
