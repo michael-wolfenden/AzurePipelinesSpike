@@ -16,7 +16,7 @@ jobs:
         inputs:
           # semantic-version requires node > 8.3
           versionSpec: 10.3.0
-      - powershell: ./ build.ps1
+      - powershell: .\build.ps1
         displayName: 'Cake 🍰'
         env:
           # need to explicitly map so they are decrypted
