@@ -46,7 +46,6 @@ Task("Build")
     .IsDependentOn("Build_solution")
     .IsDependentOn("Run_tests")
     .IsDependentOn("Package")
-    .IsDependentOn("Release")
     ;
 
 Task("Run_dotnet_info")
