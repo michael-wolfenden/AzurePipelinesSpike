@@ -58,5 +58,5 @@ jobs:
         displayName: 'Download packages to artifacts directory'
         inputs:
           downloadType: specific
-          itemPattern: '*.nugpkg'
+          itemPattern: '**/*.nugpkg'
           downloadPath: artifacts
