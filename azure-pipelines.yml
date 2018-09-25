@@ -60,3 +60,9 @@ jobs:
           downloadType: specific
           itemPattern: 'drop/**'
           downloadPath: artifacts
+      - powershell: .\build.ps1 -target Release
+        displayName: 'Cake 🍰'
+        env:
+          # need to explicitly map so they are decrypted
+          GITHUB_TOKEN: $(GITHUB_TOKEN)
+          NUGET_TOKEN: $(NUGET_TOKEN)

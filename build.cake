@@ -98,7 +98,7 @@ Task("Get_next_release_number")
     if (hasReleaseVersionChanged)
         Information("Next release number is {0}", buildContext.ReleaseVersion);
     else
-        Warning("There are no relevant changes, skipping publish to nuget");
+        Warning("There are no relevant changes");
 });
 
 Task("Build_solution")
@@ -153,25 +153,8 @@ Task("Package")
 });
 
 Task("Release")
-    .WithCriteria<BuildContext>((_, buildContext) =>
-        buildContext.IsRunningOnRemoteMasterBranch,
-        "Skipped as build not triggered by remote 'master' branch commit"
-    )
-    .WithCriteria<BuildContext>((_, buildContext) =>
-        buildContext.HasReleaseVersionChanged,
-        "Skipped as release version has not changed"
-    )
-    .WithCriteria<BuildContext>((_, buildContext) =>
-        buildContext.IsRunningOnWindows,
-        "Skipped as release was triggered by a linux build"
-    )
     .Does<BuildContext>(buildContext =>
 {
-    Information("Releasing v{0}", buildContext.ReleaseVersion);
-    Information("Updating CHANGELOG.md");
-    Information("Creating github release");
-    Information("Pushing to NuGet");
-
     Npx("semantic-release", requiredSemanticVersionPackages);
 });
 
@@ -203,7 +186,6 @@ public class BuildContext
     public int UseAsManyProcessesAsThereAreAvailableCPUs { get; } = 0;
 
     public string ReleaseVersion { get; private set; } = DefaultReleaseNumber;
-    public bool HasReleaseVersionChanged { get; private set; }
     public bool IsRunningOnWindows { get; private set; }
 
     public BuildContext(string projectName, ICakeContext context)
@@ -232,9 +214,8 @@ public class BuildContext
             .Where(line => !string.IsNullOrWhiteSpace(line))
             .SingleOrDefault();
 
-        HasReleaseVersionChanged = nextReleaseNumber != null;
         ReleaseVersion = nextReleaseNumber ?? DefaultReleaseNumber;
 
-        return HasReleaseVersionChanged;
+        return nextReleaseNumber != null;
     }
 }
