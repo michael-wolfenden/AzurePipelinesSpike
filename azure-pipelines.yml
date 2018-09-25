@@ -12,20 +12,20 @@ jobs:
       vmImage: ubuntu-16.04
     steps:
       - task: NodeTool@0
+        displayName: 'Install node 10.3.0'
         inputs:
           # semantic-version requires node > 8.3
           versionSpec: 10.3.0
-        steps:
-          - powershell: ./ build.ps1
-            displayName: 'Cake 🍰'
-            env:
-              # need to explicitly map so they are decrypted
-              GITHUB_TOKEN: $(GITHUB_TOKEN)
-              NUGET_TOKEN: $(NUGET_TOKEN)
-          - task: PublishBuildArtifacts@1
-            displayName: 'Publish packages'
-            inputs:
-              PathtoPublish: artifacts
+      - powershell: ./ build.ps1
+        displayName: 'Cake 🍰'
+        env:
+          # need to explicitly map so they are decrypted
+          GITHUB_TOKEN: $(GITHUB_TOKEN)
+          NUGET_TOKEN: $(NUGET_TOKEN)
+      - task: PublishBuildArtifacts@1
+        displayName: 'Publish packages'
+        inputs:
+          PathtoPublish: artifacts
 
   # - job: Windows
   #   pool:
