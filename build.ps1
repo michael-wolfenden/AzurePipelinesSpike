@@ -11,6 +11,6 @@ Write-Host "Tools path: $ToolPath"
 Write-Host "Tools exe: $ToolExe" 
 
 dotnet tool install --tool-path "$ToolPath" Cake.Tool --version $CakeVersion
-dotnet info
+dotnet --info
 
 & $ToolExe "--verbosity=verbose" "--target=$Target"
