@@ -1,7 +1,7 @@
 jobs:
   - job: macOS
     pool:
-      vmImage: 'xcode9-macos10.13
+      vmImage: 'xcode9-macos10.13'
     steps:
       # Install node 10.3.0 as semantic-version requires node > 8.3
       - task: NodeTool@0
