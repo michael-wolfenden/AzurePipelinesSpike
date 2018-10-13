@@ -20,6 +20,7 @@ jobs:
           DOTNET_CLI_TELEMETRY_OPTOUT: true
           # This will prevent the CLI from pre-populating the packages cache.
           DOTNET_SKIP_FIRST_TIME_EXPERIENCE: true
+          DOTNET_ROOT: /Users/vsts/.dotnet/sdk/2.1.402/
       # Publish the test results produced by the build so they are visible
       # in the tests tab
       - task: PublishTestResults@2
