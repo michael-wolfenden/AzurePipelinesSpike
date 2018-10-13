@@ -6,7 +6,8 @@ Param
     [String]$ToolExe     = [io.path]::combine($ToolPath, "dotnet-cake")
 )
 
-where dotnet
+Write-Host "Dotet Location" 
+Get-Command dotnet
 
 Write-Host "Tools path: $ToolPath" 
 Write-Host "Tools exe: $ToolExe" 
