@@ -33,7 +33,7 @@ jobs:
       name: windows
       image: vs2017-win2016
 
-  - template: azure-pipelines_common.yml
-    parameters:
-      name: macOS
-      image: xcode9-macos10.13
+  # - template: azure-pipelines_common.yml
+  #   parameters:
+  #     name: macOS
+  #     image: xcode9-macos10.13
