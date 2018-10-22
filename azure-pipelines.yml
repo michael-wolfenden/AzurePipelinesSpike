@@ -32,7 +32,6 @@ jobs:
     parameters:
       name: windows
       image: vs2017-win2016
-      image: ubuntu-16.04
 
   - template: azure-pipelines_common.yml
     parameters:
