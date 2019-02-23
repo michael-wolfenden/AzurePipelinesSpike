@@ -1,12 +1,17 @@
 parameters:
   name: ''
   image: ''
-
+  dotnet_root: ''
+  
 jobs:
   - job: ${{ parameters.name }}
     pool:
       vmImage: ${{ parameters.image }}
 
+    env:
+      ${{ if ne(parameters.dotnet_root, '') }}:
+        DOTNET_ROOT: ${{ parameters.dotnet_root }}
+      
     steps:
       # Install node 10.3.0 as semantic-version requires node > 8.3
       - task: NodeTool@0
