@@ -8,7 +8,7 @@ jobs:
     pool:
       vmImage: ${{ parameters.image }}
 
-    env:
+    variables:
       ${{ if ne(parameters.dotnet_root, '') }}:
         DOTNET_ROOT: ${{ parameters.dotnet_root }}
       
