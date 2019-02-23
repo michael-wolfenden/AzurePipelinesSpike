@@ -34,6 +34,8 @@ jobs:
       image: vs2017-win2016
 
   - template: azure-pipelines_common.yml
+    variables:
+      DOTNET_ROOT: /Users/vsts/.dotnet/sdk/2.2.103/ 
     parameters:
       name: macOS
       image: xcode9-macos10.13
