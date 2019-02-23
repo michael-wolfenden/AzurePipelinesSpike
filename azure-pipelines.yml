@@ -37,5 +37,3 @@ jobs:
     parameters:
       name: macOS
       image: xcode9-macos10.13
-    variables:
-      DOTNET_ROOT: /Users/vsts/.dotnet
